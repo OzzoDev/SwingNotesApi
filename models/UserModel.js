@@ -1,6 +1,6 @@
 import { executeQuery } from "../utils/utils.js";
 
-const User = {
+const UserModel = {
   create: async (name, email, passwordHash) => {
     return (await executeQuery(`
         INSERT INTO "user" (name, email, password_hash)
@@ -19,4 +19,4 @@ const User = {
   },
 };
 
-export default User;
+export default UserModel;
