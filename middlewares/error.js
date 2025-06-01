@@ -1,6 +1,6 @@
 import { ZodError } from "zod";
 import jwt from "jsonwebtoken";
-import { AppError, NotFoundError } from "../errors/error";
+import { AppError, NotFoundError } from "../errors/error.js";
 
 export const errorHandler = (err, req, res, next) => {
   console.error("Error caught by errorHandler:", err);

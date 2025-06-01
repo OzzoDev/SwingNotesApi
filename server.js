@@ -4,6 +4,7 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import "./config/db.js";
 import { errorHandler, notFoundHandler } from "./middlewares/error.js";
+import ApiRouter from "./routes/ApiRouter.js";
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ app.use(cors());
 app.use(helmet());
 
 app.get("/", (req, res) => res.send("Swing note api"));
+
+app.use("/api", ApiRouter);
 
 app.use(notFoundHandler);
 
