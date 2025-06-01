@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import "./config/db.js";
 import { errorHandler, notFoundHandler } from "./middlewares/error.js";
 import ApiRouter from "./routes/ApiRouter.js";
+import swaggerUi from "swagger-ui-express";
+import { swaggerDocs } from "./config/swagger.js";
 
 dotenv.config();
 
@@ -15,7 +17,11 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-app.get("/", (req, res) => res.send("Swing note api"));
+app.get("/", (_, res) => {
+  res.redirect("/docs");
+});
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/api", ApiRouter);
 

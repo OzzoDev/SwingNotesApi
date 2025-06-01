@@ -1,0 +1,24 @@
+openapi: 3.0.3
+info:
+  title: Swing Note API
+  version: 1.0.0
+  description: >
+    The **Swing Note API** allows authenticated users to create, view, update, and delete personal notes.  
+    It also handles user authentication via signup and login routes with JWT token issuance.
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+tags:
+  - name: Auth
+    description: User authentication and authorization
+  - name: Notes
+    description: CRUD operations for user notes
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

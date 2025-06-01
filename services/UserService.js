@@ -1,4 +1,9 @@
-import { BadRequestError, ConflictError, NotFoundError } from "../errors/error.js";
+import {
+  BadRequestError,
+  ConflictError,
+  NotFoundError,
+  UnauthenticatedError,
+} from "../errors/error.js";
 import UserModel from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
 
@@ -14,10 +19,6 @@ const UserService = {
 
     const user = await UserModel.create(name, email, passwordHash);
 
-    if (!user) {
-      throw new NotFoundError("User not found");
-    }
-
     return { id: user.id, name: user.name, email: user.email, createdAt: user.created_at };
   },
   login: async (name, password) => {
@@ -30,7 +31,7 @@ const UserService = {
     const isMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!isMatch) {
-      throw new BadRequestError("Incorrect password");
+      throw new UnauthenticatedError("Incorrect password");
     }
 
     return { id: user.id, name: user.id, email: user.email, createdAt: user.created_at };
