@@ -30,7 +30,7 @@ const UserService = {
     const isMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!isMatch) {
-      throw new BadRequestError("Invalid credentials");
+      throw new BadRequestError("Incorrect password");
     }
 
     return { id: user.id, name: user.id, email: user.email, createdAt: user.created_at };
