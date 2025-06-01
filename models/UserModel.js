@@ -7,7 +7,7 @@ const UserModel = {
         `
         SELECT *
         FROM "user"
-        WHERE name = $1 OR name = $2  
+        WHERE name = $1 OR email = $2  
     `,
         [name, email]
       )
