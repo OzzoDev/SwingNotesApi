@@ -7,7 +7,7 @@ dotenv.config();
 
 const POSTGRES_URL = process.env.POSTGRES_URL;
 
-const pool = new Pool({
+export const pool = new Pool({
   connectionString: POSTGRES_URL,
   ssl: {
     rejectUnauthorized: false,

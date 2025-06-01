@@ -34,7 +34,7 @@ const UserService = {
       throw new UnauthenticatedError("Incorrect password");
     }
 
-    return { id: user.id, name: user.id, email: user.email, createdAt: user.created_at };
+    return { id: user.id, name: user.name, email: user.email, createdAt: user.created_at };
   },
 };
 

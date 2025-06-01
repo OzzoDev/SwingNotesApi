@@ -19,7 +19,7 @@ const NoteController = {
     try {
       const note = await NoteService.create(title, text, userId);
 
-      res.status(200).json({ data: note, success: true, message: "Note created successfully" });
+      res.status(201).json({ data: note, success: true, message: "Note created successfully" });
     } catch (err) {
       next(err);
     }
