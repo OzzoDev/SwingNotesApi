@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { UnauthenticatedError } from "../errors/error";
+import { UnauthenticatedError } from "../errors/error.js";
 
 dotenv.config();
 

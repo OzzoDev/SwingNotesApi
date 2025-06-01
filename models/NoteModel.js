@@ -1,4 +1,4 @@
-import { executeQuery } from "../utils/utils";
+import { executeQuery } from "../utils/utils.js";
 
 const NoteModel = {
   filterByTitle: async (title, userId) => {
