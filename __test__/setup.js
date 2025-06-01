@@ -12,6 +12,11 @@ export const seedTestDb = async () => {
     ["bob", "bob@test.com"],
   ];
 
+  const notes = [
+    ["test note", "this is a test note"],
+    ["secret", "my secret note"],
+  ];
+
   for (const [name, email] of users) {
     await executeQuery(`INSERT INTO "user" (name, email, password_hash) VALUES ($1, $2, $3)`, [
       name,
@@ -23,9 +28,11 @@ export const seedTestDb = async () => {
   const user = await executeQuery(`SELECT id FROM "user" WHERE name = 'alice'`);
   const userId = user[0].id;
 
-  await executeQuery(`INSERT INTO note (user_id, title, text) VALUES ($1, $2, $3)`, [
-    userId,
-    "Test Note",
-    "This is a test note.",
-  ]);
+  for (const [title, text] of notes) {
+    await executeQuery(`INSERT INTO note (user_id, title, text) VALUES ($1, $2, $3)`, [
+      userId,
+      title,
+      text,
+    ]);
+  }
 };

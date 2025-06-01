@@ -67,7 +67,7 @@ describe("Auth endpoints", () => {
     expect(res.statusCode).toBe(400);
   });
 
-  it("should create user with unrecognized req body field", async () => {
+  it("should not create user with unrecognized req body field", async () => {
     const res = await request(app).post("/api/user/login").send({
       name: "alice",
       email: "alice@example.com",
