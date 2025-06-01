@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import pkg from "pg";
-import { executeQuery } from "../utils/utils";
+import { executeQuery } from "../utils/utils.js";
 const { Pool } = pkg;
 
 dotenv.config();
@@ -51,9 +51,9 @@ const initDB = async () => {
   }
 
   try {
-    await client.query("BEGIN");
+    await executeQuery("BEGIN");
 
-    await client.query(`
+    await executeQuery(`
         CREATE TABLE IF NOT EXISTS "user" (
             id SERIAL PRIMARY KEY,
             email VARCHAR(255) NOT NULL UNIQUE,
@@ -62,7 +62,7 @@ const initDB = async () => {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )`);
 
-    await client.query(`
+    await executeQuery(`
         CREATE TABLE IF NOT EXISTS note (
             id SERIAL PRIMARY KEY,
             user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
@@ -72,7 +72,7 @@ const initDB = async () => {
             modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )`);
 
-    await client.query("COMMIT");
+    await executeQuery("COMMIT");
   } catch (err) {
     await executeQuery("ROLLBACK");
     throw err;

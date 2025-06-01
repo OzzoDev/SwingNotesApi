@@ -1,4 +1,4 @@
-import pool from "../config/postgres.js";
+import pool from "../config/db.js";
 
 export const executeQuery = async (query, values = []) => {
   const sanitizedValues = sanitizeValues(values);
