@@ -1,3 +1,4 @@
+import { NotFoundError } from "../errors/error.js";
 import NoteModel from "../models/NoteModel.js";
 
 const NoteService = {
@@ -15,13 +16,31 @@ const NoteService = {
     return notes;
   },
   create: async (title, text, userId) => {
-    return (await NoteModel.create(title, text, userId)) || null;
+    const note = await NoteModel.create(title, text, userId);
+
+    if (!note) {
+      throw new NotFoundError("Note not found");
+    }
+
+    return note;
   },
   update: async (tilte, text, noteId, userId) => {
-    return (await NoteModel.update(tilte, text, noteId, userId)) | null;
+    const note = await NoteModel.update(tilte, text, noteId, userId);
+
+    if (!note) {
+      throw new NotFoundError("Note not found");
+    }
+
+    return note;
   },
   delete: async (noteId, userId) => {
-    return (await NoteModel.delete(noteId, userId)) || null;
+    const note = await NoteModel.delete(noteId, userId);
+
+    if (!note) {
+      throw new NotFoundError("Note not found");
+    }
+
+    return note;
   },
 };
 
