@@ -10,7 +10,7 @@ const UserService = {
       return { err: 404 };
     }
 
-    return user;
+    return { id: user.id, name: user.id, email: user.email, createdAt: user.created_at };
   },
   login: async (name, password) => {
     const user = UserModel.getByName(name);
@@ -25,7 +25,7 @@ const UserService = {
       return { err: 400 };
     }
 
-    return user;
+    return { id: user.id, name: user.id, email: user.email, createdAt: user.created_at };
   },
 };
 
