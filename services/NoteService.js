@@ -1,4 +1,4 @@
-import { NotFoundError } from "../errors/error.js";
+import { ConflictError, NotFoundError } from "../errors/error.js";
 import NoteModel from "../models/NoteModel.js";
 
 const NoteService = {

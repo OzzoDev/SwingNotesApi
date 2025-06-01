@@ -19,6 +19,26 @@ const NoteModel = {
       [`%${title}%`, userId]
     );
   },
+  getById: async (noteId) => {
+    return (
+      await executeQuery(
+        `
+      SELECT 
+          n.id, 
+          n.title, 
+          n.text, 
+          n.created_at, 
+          n.modified_at,
+          u.name AS user
+      FROM note n
+      INNER JOIN "user" u 
+        ON n.user_id = u.id
+      WHERE n.id = $1
+    `,
+        [noteId]
+      )
+    )[0];
+  },
   get: async (userId) => {
     return await executeQuery(
       `

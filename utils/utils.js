@@ -23,3 +23,11 @@ export const sanitizeValues = (values) => {
     return value;
   });
 };
+
+export const safeParseNumber = (input) => {
+  try {
+    return parseInt(input);
+  } catch {
+    return null;
+  }
+};
