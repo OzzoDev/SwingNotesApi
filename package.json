@@ -1,0 +1,20 @@
+{
+  "name": "swing-notes-api",
+  "version": "1.0.0",
+  "description": "The Swing Note Api lets users perform CRUD operations with posts, it also handles authentication using JWT",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OzzoDev/SwingNotesApi.git"
+  },
+  "author": "OzzoDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OzzoDev/SwingNotesApi/issues"
+  },
+  "homepage": "https://github.com/OzzoDev/SwingNotesApi#readme"
+}
