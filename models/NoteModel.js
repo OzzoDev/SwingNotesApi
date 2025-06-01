@@ -1,7 +1,7 @@
 import { executeQuery } from "../utils/utils";
 
 const NoteModel = {
-  filterByTitle: async (title) => {
+  filterByTitle: async (title, userId) => {
     return await executeQuery(
       `
       SELECT 
@@ -14,13 +14,14 @@ const NoteModel = {
       FROM note n
       INNER JOIN "user" u 
         ON n.user_id = u.id
-      WHERE n.title ILIKE $1
+      WHERE n.title ILIKE $1 AND u.id = $2
       `,
-      [`%${title}%`]
+      [`%${title}%`, userId]
     );
   },
-  get: async () => {
-    return await executeQuery(`
+  get: async (userId) => {
+    return await executeQuery(
+      `
       SELECT 
           n.id, 
           n.title, 
@@ -31,7 +32,10 @@ const NoteModel = {
       FROM note n
       INNER JOIN "user" u 
         ON n.user_id = u.id
-    `);
+      WHERE u.id = $1
+    `,
+      [userId]
+    );
   },
   create: async (title, text, userId) => {
     return (
