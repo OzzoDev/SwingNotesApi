@@ -55,7 +55,7 @@ const NoteModel = {
       )
     )[0];
   },
-  update: async (title, text, userId, noteId) => {
+  update: async (title, text, noteId, userId) => {
     const fields = {};
     if (title !== undefined) fields.title = title;
     if (text !== undefined) fields.text = text;
@@ -83,7 +83,7 @@ const NoteModel = {
             modified_at,
             (SELECT name FROM "user" WHERE id = $${userIdIndex}) AS user
         `,
-        [...values, noteId, userId]
+        [...values, parseInt(noteId), parseInt(userId)]
       )
     )[0];
   },

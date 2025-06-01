@@ -66,8 +66,8 @@ const initDB = async () => {
         CREATE TABLE IF NOT EXISTS note (
             id SERIAL PRIMARY KEY,
             user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
-            title VARCHAR(255) NOT NULL UNIQUE,
-            text VARCHAR(255) NOT NULL UNIQUE,
+            title VARCHAR(50) NOT NULL UNIQUE,
+            text VARCHAR(300) NOT NULL UNIQUE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    
             modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )`);

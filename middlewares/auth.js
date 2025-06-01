@@ -7,7 +7,7 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const authenticate = (req, res, next) => {
-  const authorizationHeader = req.headers?.token;
+  const authorizationHeader = req.headers?.authorization;
 
   if (!authorizationHeader) {
     throw new UnauthenticatedError("Auhtorization header is missing");
@@ -27,6 +27,8 @@ export const authenticate = (req, res, next) => {
     }
 
     req.user = user;
+
+    next();
   } catch (err) {
     next(err);
   }
