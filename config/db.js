@@ -29,27 +29,7 @@ export const pool = new Pool({
   }
 })();
 
-const isInitialized = async () => {
-  return (
-    (
-      await executeQuery(`
-        SELECT SUM(row_count) AS total_rows
-        FROM (
-            SELECT COUNT(*) AS row_count
-            FROM information_schema.tables
-            WHERE table_schema = 'public'
-            GROUP BY table_name
-        ) AS counts   
-    `)
-    )[0]?.total_rows > 0
-  );
-};
-
-const initDB = async () => {
-  if (await isInitialized()) {
-    return;
-  }
-
+export const initDB = async () => {
   try {
     await executeQuery("BEGIN");
 
