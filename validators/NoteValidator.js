@@ -59,6 +59,7 @@ const NoteValidator = {
       id: async (req, res, next) => {
         try {
           const { noteId } = req.params;
+          const { id: userId } = req.user;
 
           const numericNoteId = safeParseNumber(noteId);
 
@@ -66,7 +67,7 @@ const NoteValidator = {
             return next(new BadRequestError("Note id must be a number"));
           }
 
-          const note = await NoteModel.getById(numericNoteId);
+          const note = await NoteModel.getById(numericNoteId, userId);
 
           if (!note) {
             return next(new NotFoundError("Note not found"));
