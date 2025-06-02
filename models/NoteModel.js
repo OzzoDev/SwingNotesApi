@@ -20,6 +20,8 @@ const NoteModel = {
     );
   },
   getById: async (noteId, userId) => {
+    console.log(noteId, userId);
+
     return (
       await executeQuery(
         `
@@ -33,7 +35,7 @@ const NoteModel = {
       FROM note n
       INNER JOIN "user" u 
         ON n.user_id = u.id
-      WHERE n.id = $1 and u.id = $2
+      WHERE n.id = $1 AND u.id = $2
     `,
         [noteId, userId]
       )

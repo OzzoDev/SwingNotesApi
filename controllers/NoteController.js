@@ -3,7 +3,7 @@ import NoteService from "../services/NoteService.js";
 const NoteController = {
   getById: async (req, res, next) => {
     const { noteId } = req.params;
-    const { userId } = req.user;
+    const { id: userId } = req.user;
 
     try {
       const note = await NoteService.getById(noteId, userId);
