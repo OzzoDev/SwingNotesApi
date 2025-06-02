@@ -20,8 +20,6 @@ const NoteModel = {
     );
   },
   getById: async (noteId, userId) => {
-    console.log(noteId, userId);
-
     return (
       await executeQuery(
         `
