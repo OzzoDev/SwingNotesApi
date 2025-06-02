@@ -1,5 +1,5 @@
 paths:
-  /signup:
+  api/user/signup:
     post:
       summary: User signup
       tags: [Auth]
@@ -23,7 +23,7 @@ paths:
         "500":
           description: Internal server error
 
-  /login:
+  api/user/login:
     post:
       summary: User login
       tags: [Auth]
