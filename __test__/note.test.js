@@ -24,6 +24,12 @@ describe("Notes endpoints", () => {
     expect(Array.isArray(res.body.data)).toBe(true);
   });
 
+  it("should get note by id or return not found error", async () => {
+    const res = await request(app).get("/api/notes/1").set("Authorization", `Bearer ${token}`);
+
+    expect([200, 404]).toContain(res.statusCode);
+  });
+
   it("should get all notes including search query", async () => {
     const res = await request(app)
       .get("/api/notes?search=secret")
