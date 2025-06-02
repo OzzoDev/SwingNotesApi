@@ -1,6 +1,18 @@
 import NoteService from "../services/NoteService.js";
 
 const NoteController = {
+  getById: async (req, res, next) => {
+    const { noteId } = req.params;
+    const { userId } = req.user;
+
+    try {
+      const note = await NoteService.getById(noteId, userId);
+
+      res.status(200).json({ data: note, success: true });
+    } catch (err) {
+      next(err);
+    }
+  },
   get: async (req, res, next) => {
     const { id: userId } = req.user;
 

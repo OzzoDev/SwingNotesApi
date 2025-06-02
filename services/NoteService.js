@@ -1,7 +1,16 @@
-import { ConflictError, NotFoundError } from "../errors/error.js";
+import { NotFoundError } from "../errors/error.js";
 import NoteModel from "../models/NoteModel.js";
 
 const NoteService = {
+  getById: async (noteId, userId) => {
+    const note = await NoteModel.getById(noteId, userId);
+
+    if (!note) {
+      throw new NotFoundError("Note not found");
+    }
+
+    return note;
+  },
   get: async (query, userId) => {
     const { search } = query;
 

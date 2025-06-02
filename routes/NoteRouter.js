@@ -4,6 +4,8 @@ import NoteValidator from "../validators/NoteValidator.js";
 
 const router = express.Router();
 
+router.get("/:noteId", NoteValidator.validate.params.id, NoteController.getById);
+
 router.get("/", NoteController.get);
 
 router.post("/", NoteValidator.validate.body.create, NoteController.create);
